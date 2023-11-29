@@ -1,0 +1,27 @@
+<!DOCTYPE html>{% load static %}
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h1>Articles List</h1>
+    <div class="articles">
+        {% for article in art %}
+            <div class="article">
+                <h2><a href="#">{{ article.title }}</a></h2>
+                <p>{{ article.body }}</p>
+                <p>{{ article.date }}</p>
+                {% if article.video_file %}
+                    <video width="640" height="360" controls preload="auto">
+                        <source src="{{ article.video_file.url }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
